@@ -1,24 +1,28 @@
 
+import {useState} from 'react';
 import './App.css';
 import Navbar from './navbar';
 
 function App() {
 
   const name = "Przemek";
-  const date = new Date();
+  const [date, setDate] = useState(new Date());
 
 
+  setInterval(() => {
+    setDate(new Date());
+  }, 1000);
 
-
+  const formatTime = (number) => ('00' + number).slice(-2);
 
 
   return (
     <div className="App">
       <Navbar></Navbar>
       <header className="App-header">
-        <div class="content">Witaj {name}
+        <div className="content">Witaj {name}
 
-          <h1>{date.getHours()}:{date.getMinutes()}:{date.getSeconds()}</h1>
+          <h1>{formatTime(date.getHours())}:{formatTime(date.getMinutes())}:{formatTime(date.getSeconds())}</h1>
 
         </div>
 
