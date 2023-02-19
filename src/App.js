@@ -7,7 +7,7 @@ function App() {
 
   const name = "Przemek";
   const [date, setDate] = useState(new Date());
-  const [starDate, setStartDate] = useState(null);
+  const [stardate, setStardate] = useState(null);
 
 
   setInterval(() => {
@@ -16,14 +16,13 @@ function App() {
 
   const formatTime = (number) => ('00' + number).slice(-2);
   const startWatch = () => {
-
-    let start = 0;
-
-    setStartDate(start);
-
     setInterval(() => {
+      let start = date;
 
-      setStartDate(++start);
+      const newDate = new Date();
+      newDate.setTime(new Date() - start);
+
+      setStardate(newDate);
 
     }, 1000);
   }
@@ -35,6 +34,7 @@ function App() {
       <header className="App-header">
         <div className="content">Witaj {name}
 
+
           <h1>
             {date.getFullYear()}
             :{formatTime(date.getMonth() + 1)}
@@ -44,7 +44,21 @@ function App() {
             :{formatTime(date.getSeconds())}
           </h1>
           <button onClick={() => startWatch()} >Start</button>
-          <h2>{starDate}</h2>
+
+          {stardate &&
+
+            <h1>
+              {stardate.getFullYear()}
+              :{formatTime(stardate.getMonth() + 1)}
+              :{formatTime(stardate.getDate())}
+              :{formatTime(stardate.getHours())}
+              :{formatTime(stardate.getMinutes())}
+              :{formatTime(stardate.getSeconds())}
+            </h1>
+          }
+
+
+
         </div>
 
 
