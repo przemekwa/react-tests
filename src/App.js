@@ -7,6 +7,7 @@ function App() {
 
   const name = "Przemek";
   const [date, setDate] = useState(new Date());
+  const [starDate, setStartDate] = useState(null);
 
 
   setInterval(() => {
@@ -14,6 +15,18 @@ function App() {
   }, 1000);
 
   const formatTime = (number) => ('00' + number).slice(-2);
+  const startWatch = () => {
+
+    let start = 0;
+
+    setStartDate(start);
+
+    setInterval(() => {
+
+      setStartDate(++start);
+
+    }, 1000);
+  }
 
 
   return (
@@ -30,7 +43,8 @@ function App() {
             :{formatTime(date.getMinutes())}
             :{formatTime(date.getSeconds())}
           </h1>
-
+          <button onClick={() => startWatch()} >Start</button>
+          <h2>{starDate}</h2>
         </div>
 
 
