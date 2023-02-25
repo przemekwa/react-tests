@@ -1,4 +1,5 @@
 
+import moment from 'moment/moment';
 import {useState} from 'react';
 import './App.css';
 import Navbar from './navbar';
@@ -11,18 +12,18 @@ function App() {
   
   const [isStopWatch, setIsStopWatch] = useState(false);
 
+  let startWatchDate = null;
+
 
   setInterval(() => {
     setDate(new Date());
 
     if (isStopWatch) {
-      setStardate(new Date());
+     
+      console.log(moment(startWatchDate).add(1, 'seconds').format("HH:mm:ss"));
 
     }
-    else{
-      setStardate(null);
-    }
-
+  
 
 
 
@@ -33,6 +34,7 @@ function App() {
   
   const startWatch = () => {
     setIsStopWatch(!isStopWatch);
+    startWatchDate = moment(new Date('December 17, 1995 00:00:00'));
   }
 
 
