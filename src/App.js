@@ -8,23 +8,31 @@ function App() {
   const name = "Przemek";
   const [date, setDate] = useState(new Date());
   const [stardate, setStardate] = useState(null);
+  
+  const [isStopWatch, setIsStopWatch] = useState(false);
 
 
   setInterval(() => {
     setDate(new Date());
+
+    if (isStopWatch) {
+      setStardate(new Date());
+
+    }
+    else{
+      setStardate(null);
+    }
+
+
+
+
   }, 1000);
 
   const formatTime = (number) => ('00' + number).slice(-2);
+  
+  
   const startWatch = () => {
-    setInterval(() => {
-      let start = date;
-
-      const newDate = new Date();
-      newDate.setTime(new Date() - start);
-
-      setStardate(newDate);
-
-    }, 1000);
+    setIsStopWatch(!isStopWatch);
   }
 
 
